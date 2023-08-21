@@ -11,14 +11,23 @@ const server = http.createServer((req, res) => {
     // res.end("<h3>Testing res.end</h3>");
     let path='./views';
     switch(req.url){
-        case '/':
-            path += '/index.html'
+        case "/":
+            path += "/index.html";
+            res.statusCode = 200;
             break;
-        case '/about':
-            path += '/about.html'
+        case "/about":
+            path += "/about.html";
+            res.statusCode = 200;
             break;
+            case "/aboutus":
+                res.statusCode = 301;
+                res.setHeader('Location','/about')
+                res.end();
+                break;
         default:  
-            path +='/404.html'
+            path +="/404.html";
+            res.statusCode = 404;
+            break;
     }
     fs.readFile(path, (err, file) => {
         if(err){
@@ -33,6 +42,6 @@ const server = http.createServer((req, res) => {
 //port number, host name, cb 
 server.listen(3000, 'localhost', ()=> {
     console.log("server is listening on port 3000");
-}) 
+})
 
 
