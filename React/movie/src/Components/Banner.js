@@ -1,14 +1,16 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import {movies} from './getMovies'
 
 export default class Banner extends Component {
     render() {
+        let movie=movies.results[0];
         return (
             <div class="card">
-                <img src="..." class="card-img-top" alt="..." />
+                <img src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`} class="card-img-top" alt="..." />
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <h5 class="card-title">{movie.original_title}</h5>
+                    <p class="card-text">{movie.overview}</p>
+                    {/* <a href="#" class="btn btn-primary">Go somewhere</a> */}
                 </div>
             </div>
         )
