@@ -90,9 +90,12 @@
   top: 83%;
 }
 
-.button-wrapper{
+.button-wrapper, .trending{
   display: flex;
   justify-content: center;
 }
 
-
+.pagination{
+  display: flex;
+  justify-content: center;
+}
