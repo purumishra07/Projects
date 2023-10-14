@@ -27,6 +27,38 @@ export default class List extends Component {
         })
     };
 
+    changeMovies =async () => {
+        let ans = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=${this.state.currPage}`);
+        this.setState({
+        movies:[...ans.data.results]
+    })
+    }
+
+    handleNext = () => {
+        let tempArr=[];
+        for(let i=1; i<=this.state.parr.length + 1; i++){
+            tempArr.push(i);  //[1,2]
+        }
+        this.setState({
+            parr: [...tempArr],
+            currPage: this.state.currPage + 1
+        }, this.changeMovies);
+    }
+
+    handlePrevious = () => {
+        if (this.state.currPage != 1) {
+            this.setState({
+                currPage: this.state.currPage - 1
+            }, this.changeMovies)
+        }
+    }
+
+    handlePageNum = (pageNum) => {
+        this.setState({
+            currPage: pageNum,
+        }, this.changeMovies)
+    }
+
   async componentDidMount(){
     // console.log("componentDidMount is called"); 
     let ans = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=${this.state.currPage}`);
@@ -56,7 +88,7 @@ export default class List extends Component {
                                 <img src={`https://image.tmdb.org/t/p/original/${movieObj.backdrop_path}`} className="card-img-top movie-img" alt="..." />
                                 <h5 class="card-title movie-title">{movieObj.original_title}</h5>
                                 {/* <p class="card-text movie-text">{movie.overview}</p> */}
-                                <div className='button-wrapper'>
+                                <div className="button-wrapper">
                                     {this.state.hover == movieObj.id &&
                                         <a href="#" class="btn btn-info movie-button">Add to Favourites</a>}
                                 </div>
@@ -68,15 +100,15 @@ export default class List extends Component {
                 <div className="pagination">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">
-                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                            <li class="page-item"><a class="page-link" onClick={this.handlePrevious}>Previous</a></li>
                             {
                                 this.state.parr.map(pageNum => (
-                                <li class="page-item"><a class="page-link" href="#">{pageNum}</a></li>
+                                <li class="page-item"><a class="page-link" onClick={() => { this.handlePageNum(pageNum) }}>{pageNum}</a></li>
                             ))
                             }
                             {/* <li class="page-item"><a class="page-link" href="#">2</a></li>
                             <li class="page-item"><a class="page-link" href="#">3</a></li> */}
-                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                            <li class="page-item"><a class="page-link" onClick={this.handleNext}>Next</a></li>
                         </ul>
                     </nav>
                 </div>
