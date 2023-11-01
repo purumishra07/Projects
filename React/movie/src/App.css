@@ -39,26 +39,28 @@
 
 .banner-card{
   background-color: white;
-  width: 100vw;
+  width:100vw;
 }
 
 .banner-img{
-  height: 70vh;
-  width: 100%;
+  height:70vh;
+  width:100%;
 }
 
 .banner-title{
-  color: white;
-  position: absolute;
-  top: 52vh;
-  left: 5vw;
+  position:absolute;
+  color:white;
+  top:50vh;
+  left:5vw;
+  /* font-size:2rem; */
 }
-
 .banner-text{
-  color: white;
-  position: absolute;
-  top: 58vh;
-  left: 5vw;
+  position:absolute;
+  color:white;
+  top:60vh;
+  left:5vw;
+  margin-right: 5vw;
+  /* overflow: hidden; */
 }
 
 .movies-list{
@@ -67,30 +69,25 @@
   padding: 1rem;
   justify-content: center;
 }
-
 .movie-card{
-  width:20vw;
-  margin:1rem;
-}
-
-.movie-img{
-  height: 45vh;
-  width: 100%;
+width:20vw;
+margin:1rem;
+color:white;
+position: relative;
 }
 
 .movie-title{
   position: absolute;
-  top: 1rem;
-  left: 0.5rem;
-  color: white;
+  top:1rem;
+  left:1rem;
 }
 
 .movie-button{
   position: absolute;
-  top: 83%;
+  top:80%
 }
 
-.button-wrapper, .trending{
+.button-wrapper{
   display: flex;
   justify-content: center;
 }
@@ -101,9 +98,49 @@
 }
 
 .favourites-list{
-  padding: 3rem;
+    padding: 3rem;
+  }
+  .favourites-table{
+    padding: 3rem;
+  }
+
+
+
+
+
+/* upto */
+@media screen and (max-width:400px) { 
+  .banner-card{
+    height:25vh;
+  }
+
+  .banner-img{
+    height:30vh;
+  }
+
+  .banner-title{
+    top:10vh;
+    left:5vw;
+  }
+
+  .banner-text{
+    top:15vh;
+    left:5vw;
+  }
+
+  .movie-card{
+    width: 40vw;
+    margin: 0.1rem;
+  }
+  .movie-button{
+    width: 80%;
+  }
+  .movie-img{
+    width: 40vw;
+  }
+
+  
+  
 }
 
-.favourites-table{
-  padding: 3rem;
-}
+
